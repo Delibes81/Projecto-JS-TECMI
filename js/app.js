@@ -95,10 +95,40 @@ const totalIngresos = () => {
     document.getElementById('lista-ingresos').innerHTML = ingresosHTML; 
   };
 
+  const crearEgresoHTML = (egreso) => {
+    let egresoHTML
+   = `
+      <div class="elemento limpiarEstilos">
+        <div class="elemento_descripcion">${egreso.descripcion}</div> 
+        <div class="derecha limpiarEstilos">
+          <div class="elemento_valor">-${formatoMoneda(egreso.valor)}</div>
+   
+          <div class="elemento_porcentaje">21%</div> 
+          <div class="elemento_eliminar">
+            <button class="elemento_eliminar--btn" onclick="eliminarEgreso(${egreso.id})">
+              <ion-icon name="close-circle-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    return egresoHTML;
+  };
+
+  const cargarEgresos = () => {
+    let egresosHTML = ''; 
+    for (const egreso of egresos) {
+      egresosHTML += crearEgresoHTML(egreso); 
+    }
+    
+    document.getElementById('lista-egresos').innerHTML = egresosHTML; 
+  };
+
   const cargarApp = () => {
  
     cargarCabecero();
     cargarIngresos();
+    cargarEgresos();
   };
   window.onload = cargarApp;
   document.addEventListener('DOMContentLoaded', () => {
