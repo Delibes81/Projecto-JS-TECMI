@@ -124,6 +124,35 @@ const totalIngresos = () => {
     document.getElementById('lista-egresos').innerHTML = egresosHTML; 
   };
 
+
+const eliminarEgreso = () => {
+  console.log("Eliminando egreso con ID:", id);
+    let indiceEliminar = egresos.findIndex(egreso => egreso.id === id);
+    if (indiceEliminar !== -1) {
+    egresos.splice(indiceEliminar, 1); 
+  }
+}
+
+const agregarDato = () => {
+  const forma = document.getElementById('forma');
+  const tipo = forma.tipo.value;
+  const descripcion = forma.descripcion.value;
+  const valor = parseFloat(forma.valor.value);
+  if (descripcion.trim() !== '' && !isNaN(valor)) {
+    if (tipo === 'ingreso') {
+      ingresos.push(new Ingreso(descripcion, valor));
+      cargarCabecero();
+      cargarIngresos();
+    } else { 
+      egresos.push(new Egreso(descripcion, valor));
+      cargarCabecero();
+      cargarEgresos(); 
+    }
+    forma.reset();
+    console.log("Se ejecutó agregarDato")
+  }
+};
+
   const cargarApp = () => {
  
     cargarCabecero();
