@@ -5,19 +5,19 @@ export default class Dato {
       this._valor = valor;
     }
   
-    getdescripcion() {
+    get descripcion() {
       return this._descripcion;
     }
   
-    setdescripcion(nuevaDescripcion) {
+    set descripcion(nuevaDescripcion) {
       this._descripcion = nuevaDescripcion;
     }
   
-    getvalor() {
+    get valor() {
       return this._valor;
     }
   
-    setvalor(nuevoValor) {
+    set valor(nuevoValor) {
       this._valor = nuevoValor;
     }
   }

@@ -1,21 +1,24 @@
 import Egreso from './Egreso.js'
 import Ingreso from './Ingreso.js'
-// Arreglo de ingresos
+
 let ingresos = [
-  new Ingreso('Salario', 20000),
-  new Ingreso('Venta auto', 50000)
+  new Ingreso('Salario', 35000),
+  new Ingreso('Venta de bicicleta', 2500),
+  new Ingreso('Bono', 5000) 
 ];
-// Arreglo de egresos
+
 const egresos = [
   new Egreso('Renta', 4000),
   new Egreso('Ropa', 800)
 ];
 
-
+console.log('engre', egresos, ingresos);
 
 const cargarCabecero = () => {
     let presupuesto = totalIngresos() - totalEgresos();
     let porcentajeEgreso = totalEgresos() / totalIngresos()
+
+   
 
     let presupuestoElemento = document.getElementById('presupuesto');
     let porcentajeElemento = document.getElementById('porcentaje');
@@ -33,16 +36,14 @@ const cargarCabecero = () => {
 
 const totalIngresos = () => {
     let totalIngreso = 0;
-    for (const ingreso of ingresos) { 
+    for (const ingreso of ingresos) {
+      console.log("Valor de ingreso.valor:", ingreso.valor); 
       totalIngreso += ingreso.valor; 
-      console.log("Total acumulado:", totalIngreso)
       
     }
     return totalIngreso;
     
   };
-  let total = totalIngresos();
-console.log("Total acumulado:", total);
 
 
   const totalEgresos = () => {
@@ -68,6 +69,23 @@ console.log("Total acumulado:", total);
     });
   };
 
+  const crearIngresoHTML = (ingreso) => {
+    let ingresoHTML = `
+        <div class="elemento limpiarEstilos">
+            <div class="elemento_descripcion">${ingreso.descripcion}</div>
+            <div class="derecha limpiarEstilos">
+                <div class="elemento_valor">+${formatoMoneda(ingreso.valor)}</div>
+                <div class="elemento_eliminar">
+                    <button class="elemento_eliminar--btn" onclick="eliminarIngreso(${ingreso.id})"> 
+                        <ion-icon name="close-circle-outline"></ion-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    return ingresoHTML;
+};
+
   const cargarIngresos = () => {
     let ingresosHTML = ''; 
     for (const ingreso of ingresos) {
@@ -78,6 +96,11 @@ console.log("Total acumulado:", total);
   };
 
   const cargarApp = () => {
+ 
     cargarCabecero();
+    cargarIngresos();
   };
   window.onload = cargarApp;
+  document.addEventListener('DOMContentLoaded', () => {
+    cargarApp(); 
+  });
