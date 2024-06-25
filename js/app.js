@@ -37,7 +37,6 @@ const cargarCabecero = () => {
 const totalIngresos = () => {
     let totalIngreso = 0;
     for (const ingreso of ingresos) {
-      console.log("Valor de ingreso.valor:", ingreso.valor); 
       totalIngreso += ingreso.valor; 
       
     }
@@ -124,14 +123,14 @@ const totalIngresos = () => {
     document.getElementById('lista-egresos').innerHTML = egresosHTML; 
   };
 
-
-const eliminarEgreso = () => {
-  console.log("Eliminando egreso con ID:", id);
-    let indiceEliminar = egresos.findIndex(egreso => egreso.id === id);
+  window.eliminarEgreso = (id) => {
+    const indiceEliminar = egresos.findIndex(egreso => egreso.id === id);
     if (indiceEliminar !== -1) {
-    egresos.splice(indiceEliminar, 1); 
-  }
-}
+      egresos.splice(indiceEliminar, 1);
+      cargarCabecero();
+      cargarEgresos();
+    }
+  };
 
 const agregarDato = () => {
   const forma = document.getElementById('forma');
@@ -149,7 +148,7 @@ const agregarDato = () => {
       cargarEgresos(); 
     }
     forma.reset();
-    console.log("Se ejecutó agregarDato")
+   
   }
 };
 
