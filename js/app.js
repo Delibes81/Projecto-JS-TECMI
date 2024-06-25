@@ -123,6 +123,15 @@ const totalIngresos = () => {
     document.getElementById('lista-egresos').innerHTML = egresosHTML; 
   };
 
+  window.eliminarIngreso = (id) => {
+    const indiceEliminar = ingresos.findIndex(ingreso => ingreso.id === id);
+    if (indiceEliminar !== -1) {
+      ingresos.splice(indiceEliminar, 1);
+      cargarCabecero();
+      cargarIngresos();
+    }
+  };
+
   window.eliminarEgreso = (id) => {
     const indiceEliminar = egresos.findIndex(egreso => egreso.id === id);
     if (indiceEliminar !== -1) {
@@ -132,7 +141,7 @@ const totalIngresos = () => {
     }
   };
 
-const agregarDato = () => {
+window.agregarDato = () => {
   const forma = document.getElementById('forma');
   const tipo = forma.tipo.value;
   const descripcion = forma.descripcion.value;
@@ -145,10 +154,8 @@ const agregarDato = () => {
     } else { 
       egresos.push(new Egreso(descripcion, valor));
       cargarCabecero();
-      cargarEgresos(); 
+      cargarEgresos();
     }
-    forma.reset();
-   
   }
 };
 
@@ -162,3 +169,4 @@ const agregarDato = () => {
   document.addEventListener('DOMContentLoaded', () => {
     cargarApp(); 
   });
+  
