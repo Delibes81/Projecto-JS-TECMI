@@ -141,6 +141,8 @@ const totalIngresos = () => {
     }
   };
 
+  
+
 window.agregarDato = () => {
   const forma = document.getElementById('forma');
   const tipo = forma.tipo.value;
